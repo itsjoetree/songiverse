@@ -6,6 +6,7 @@ type TextProps = {
     color?: string,
     fontWeight?: string,
     children?: React.ReactNode,
+    onClick?: any,
 }
 
 const Text = (props: TextProps) => {
@@ -18,17 +19,17 @@ const Text = (props: TextProps) => {
 
         switch (props.component) {
         case "h1":
-            return <h1 style={textStyles}>{props.children}</h1>
+            return <h1 onClick={props.onClick} style={textStyles}>{props.children}</h1>
         case "h2":
-            return <h2 style={textStyles}>{props.children}</h2>
+            return <h2 onClick={props.onClick} style={textStyles}>{props.children}</h2>
         case "h3":
-            return <h3 style={textStyles}>{props.children}</h3>
+            return <h3 onClick={props.onClick} style={textStyles}>{props.children}</h3>
         case "h1":
-            return <h4 style={textStyles}>{props.children}</h4>
+            return <h4 onClick={props.onClick} style={textStyles}>{props.children}</h4>
         case "span":
-            return <span style={textStyles}>{props.children}</span>
+            return <span onClick={props.onClick} style={textStyles}>{props.children}</span>
         default:
-            return <div style={textStyles}>{props.children}</div>
+            return <div onClick={props.onClick} style={textStyles}>{props.children}</div>
         }
     }
 

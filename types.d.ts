@@ -3,3 +3,7 @@ export type Album = {
     artist: string,
     imgSrc: string
 }
+
+export type FormProps = {
+    switchForm?: any,
+  }

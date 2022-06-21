@@ -1,15 +1,19 @@
 import Image from 'next/image'
 import Head from 'next/head'
+import React from 'react'
 import Text from '../components/Text'
 import { Input } from '../components/styled/Inputs.styled'
 import { FlexContainer } from '../components/styled/Containers.styled'
 import { MusicNoteBeamed, StarHalf } from 'react-bootstrap-icons'
 import { useMediaQuery } from 'react-responsive'
 import { Album } from '../types'
+import AuthenticationForm from '../components/AuthenticationForm'
 
 type HomeProps = {
   albums: Album[]
 }
+
+const APP_COLOR = "#6495ED";
 
 const Home = ({albums} : HomeProps) => {
   const isSmallerDevice = useMediaQuery({ query: '(max-width: 600px)' })
@@ -58,7 +62,7 @@ const Home = ({albums} : HomeProps) => {
       </FlexContainer>
     </FlexContainer>
 
-    <FlexContainer style={{marginTop: 10, alignContent: "center", justifyContent: "center"}}>
+    <FlexContainer style={{marginTop: 10, alignItems: "center", justifyContent: "center"}}>
       <Input style={{maxWidth: "500px", width: "500px"}} placeholder="Search for music..."></Input>
     </FlexContainer>
 
@@ -78,6 +82,8 @@ const Home = ({albums} : HomeProps) => {
         }
       </FlexContainer>
     </FlexContainer>
+
+    <AuthenticationForm />
   </>)
 }
 
