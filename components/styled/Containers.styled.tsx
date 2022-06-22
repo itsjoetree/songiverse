@@ -10,3 +10,5 @@ export const FlexContainer = styled.div<FlexContainerProps>`
     display: flex;
     flex-direction: ${(props) => props.direction};
 `
+
+export const Block = (props: any) => <div>{props.children}</div>

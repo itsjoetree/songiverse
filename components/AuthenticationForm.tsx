@@ -10,7 +10,7 @@ const AuthenticationForm = () => {
       setIsRegister(!isRegister)
     }
 
-    return (<FlexContainer direction="column" style={{gap: 20, justifyContent: "center", alignItems: "center"}}>
+    return (<FlexContainer direction="column" style={{gap: 10, justifyContent: "center", alignItems: "center"}}>
       {isRegister ? <RegisterForm switchForm={switchForm} /> : <SignInForm switchForm={switchForm} />}
     </FlexContainer>)
 }

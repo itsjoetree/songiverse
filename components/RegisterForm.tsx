@@ -1,8 +1,8 @@
 import React from "react"
 import Text from "./Text"
+import FormInput from "./FormInput";
 import { FlexContainer } from "./styled/Containers.styled"
 import { FormProps } from "../types";
-import { Input } from "./styled/Inputs.styled";
 import { Button } from "./styled/Buttons.styled";
 
 const INPUT_STYLES = {width: "450px", maxWidth: "100%"}
@@ -17,28 +17,20 @@ const RegisterForm = ({switchForm} : FormProps) => {
     return (<>
         <FlexContainer direction='column'>
             <Text sx={{alignSelf: "center"}} color={APP_COLOR} component="h2">Register</Text>
-            <Text sx={{cursor: "pointer"}} color={APP_COLOR} onClick={switchForm}>Already have an account?</Text>
+
+            <FlexContainer style={{gap: 2}}>
+                <Text>Already have an account?</Text>
+                <Text sx={{cursor: "pointer"}} color={APP_COLOR} onClick={switchForm}> Sign In.</Text>
+            </FlexContainer>
         </FlexContainer>
 
-        <FlexContainer direction="column" style={INPUT_STYLES}>
-            <Text>Username</Text>
-            <Input ref={usernameRef} placeholder="Enter Username..." />
-        </FlexContainer>
+        <FormInput labelText="Username" placeholder="Enter Username..." ref={usernameRef} />
 
-        <FlexContainer direction="column" style={INPUT_STYLES}>
-            <Text>Email</Text>
-            <Input ref={emailRef} placeholder="Enter Username..." />
-        </FlexContainer>
+        <FormInput labelText="Email" placeholder="Enter Email..." ref={emailRef} />
 
-        <FlexContainer direction="column" style={INPUT_STYLES}>
-            <Text>Password</Text>
-            <Input ref={passwordRef} placeholder="Enter Password..." />
-        </FlexContainer>
+        <FormInput labelText="Password" placeholder="Enter Password..." ref={passwordRef} />
 
-        <FlexContainer direction="column" style={INPUT_STYLES}>
-            <Text>Confirm Password</Text>
-            <Input ref={confirmPassRef} placeholder="Confirm Password..." />
-        </FlexContainer>
+        <FormInput labelText="Confirm Password" placeholder="Confirm Password..." ref={confirmPassRef} />
 
         <Button bgColor={APP_COLOR} textColor="white">Submit</Button>
     </>)
