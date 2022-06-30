@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import { Icon, StarFill, StarHalf } from "react-bootstrap-icons"
 import { useMediaQuery } from "react-responsive"
 import { Block } from "./styled/Containers.styled"
@@ -8,7 +8,7 @@ const APP_COLOR = "#6495ED"
 const RatingBar = ({rating} : any) => {
   const isTinyDevice = useMediaQuery({ query: '(max-width: 400px)' })
 
-  const getStars = () : Icon[] => {
+  const getStars = () : ReactNode[] => {
     const parsedRating = rating.toString()
     const nums = parsedRating.split('.')
 
@@ -22,7 +22,7 @@ const RatingBar = ({rating} : any) => {
   return (
       <Block>
         {
-          getStars().map(star => star)
+          getStars().map((star, i) => <React.Fragment key={i}>{star}</React.Fragment>)
         }
       </Block>
   )

@@ -1,10 +1,10 @@
 import styled from "styled-components"
+import { BaseComponentProps, getBaseComponentProps } from "../../helpers/baseProps"
 
-type ButtonProps = {
-    textColor?: string,
-    bgColor?: string
+interface ButtonProps {
+    bp?: BaseComponentProps
 }
-  
+
 export const Button = styled.a<ButtonProps>`
     padding: 5px;
     width: 10rem;
@@ -13,6 +13,5 @@ export const Button = styled.a<ButtonProps>`
     display: inline-block;
     text-align: center;
     border-radius: 3px;
-    color: ${(props) => props.textColor};
-    background-color: ${(props) => props.bgColor};
+    ${(props) => props.bp != null ? getBaseComponentProps(props.bp) : ''}
 `

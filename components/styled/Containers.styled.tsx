@@ -1,8 +1,11 @@
 import styled from "styled-components"
+import { BaseComponentProps, getBaseComponentProps } from "../../helpers/baseProps"
 
-type FlexContainerProps = {
+interface FlexContainerProps {
+    bp?: BaseComponentProps,
     direction?: string,
     centerContent?: boolean,
+    gap?: number | string,
 }
 
 export const FlexContainer = styled.div<FlexContainerProps>`
@@ -11,7 +14,16 @@ export const FlexContainer = styled.div<FlexContainerProps>`
     display: flex;
     flex-direction: ${(props) => props.direction};
 
-    ${(props) =>  props.centerContent && "justify-content: center; align-items: center"}
+    ${(props) => props.gap != null ? `margin-top: ${typeof props.gap === 'number' ? `${props.gap}px` : props.gap};` : ''}
+    ${(props) =>  props.centerContent && "justify-content: center; align-items: center;"}
+    ${(props) => props.bp != null ? getBaseComponentProps(props.bp) : ''}
 `
 
-export const Block = (props: any) => <div>{props.children}</div>
+interface BlockProps {
+    bp?: BaseComponentProps,
+    children?: any,
+}
+
+export const Block = styled.div<BlockProps>`
+    ${(props) => props.bp != null ? getBaseComponentProps(props.bp) : ''}
+`

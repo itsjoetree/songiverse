@@ -5,7 +5,6 @@ import { FlexContainer } from "./styled/Containers.styled"
 import { FormProps } from "../types";
 import { Button } from "./styled/Buttons.styled";
 
-const INPUT_STYLES = {width: "450px", maxWidth: "100%"}
 const APP_COLOR = "#6495ED"; // TODO: Make Provider
 
 const RegisterForm = ({switchForm} : FormProps) => {
@@ -16,11 +15,11 @@ const RegisterForm = ({switchForm} : FormProps) => {
 
     return (<>
         <FlexContainer direction='column'>
-            <Text sx={{alignSelf: "center"}} color={APP_COLOR} component="h2">Register</Text>
+            <Text bp={{alignSelf: "center", color: APP_COLOR}} component="h2">Register</Text>
 
             <FlexContainer style={{gap: 2}}>
                 <Text>Already have an account?</Text>
-                <Text sx={{cursor: "pointer"}} color={APP_COLOR} onClick={switchForm}> Sign In.</Text>
+                <Text bp={{cursor: "pointer", color: APP_COLOR}} onClick={switchForm}> Sign In.</Text>
             </FlexContainer>
         </FlexContainer>
 
@@ -32,7 +31,7 @@ const RegisterForm = ({switchForm} : FormProps) => {
 
         <FormInput labelText="Confirm Password" placeholder="Confirm Password..." ref={confirmPassRef} />
 
-        <Button bgColor={APP_COLOR} textColor="white">Submit</Button>
+        <Button bp={{bgColor: APP_COLOR, color: "white", mt: 10}}>Submit</Button>
     </>)
 }
 

@@ -13,19 +13,18 @@ const SignInForm = ({switchForm} : FormProps) => {
   
     return (<>
       <FlexContainer direction="column">
-        <Text sx={{alignSelf: "center"}} color={APP_COLOR} component="h2">Sign In</Text>
+        <Text bp={{alignSelf: "center", color: APP_COLOR}} component="h2">Sign In</Text>
 
         <FlexContainer style={{gap: 2}}>
           <Text>Need an account?</Text>
-          <Text sx={{cursor: "pointer"}} color={APP_COLOR} onClick={switchForm}>Register.</Text>
+          <Text bp={{cursor: "pointer", color: APP_COLOR}} onClick={switchForm}>Register.</Text>
         </FlexContainer>
       </FlexContainer>
 
       <FormInput labelText="Username" placeholder="Enter Username..." ref={usernameRef} />
-
       <FormInput labelText="Password" placeholder="Enter Password..." ref={passwordRef} />
     
-      <Button bgColor={APP_COLOR} textColor="white">Submit</Button>
+      <Button bp={{bgColor: APP_COLOR, color: "white", mt: 10}} color="white">Submit</Button>
     </>)
 }
 
