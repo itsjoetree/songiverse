@@ -7,6 +7,11 @@ export type Album = {
     tracks?: Song[]
 }
 
+export type User = {
+    username: string,
+    profilePic: string,
+}
+
 export type Song = {
     id: string,
     name: string

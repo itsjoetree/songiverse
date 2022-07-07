@@ -3,6 +3,8 @@ import RegisterForm from "./RegisterForm"
 import SignInForm from "./SignInForm"
 import { FlexContainer } from "./styled/Containers.styled"
 
+const APP_COLOR = "#6495ED";
+
 const AuthenticationForm = () => {
     const [isRegister, setIsRegister] = React.useState<boolean>(false)
 

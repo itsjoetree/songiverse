@@ -6,6 +6,7 @@ interface ButtonProps {
 }
 
 export const Button = styled.a<ButtonProps>`
+    cursor: pointer;
     padding: 5px;
     width: 10rem;
     background: tansparent;
@@ -14,4 +15,7 @@ export const Button = styled.a<ButtonProps>`
     text-align: center;
     border-radius: 3px;
     ${(props) => props.bp != null ? getBaseComponentProps(props.bp) : ''}
+    &:hover {
+        opacity: .7
+    }
 `

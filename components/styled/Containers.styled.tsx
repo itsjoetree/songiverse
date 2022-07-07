@@ -12,9 +12,8 @@ export const FlexContainer = styled.div<FlexContainerProps>`
     margin-left: 10px;
     margin-right: 10px;
     display: flex;
-    flex-direction: ${(props) => props.direction};
-
-    ${(props) => props.gap != null ? `margin-top: ${typeof props.gap === 'number' ? `${props.gap}px` : props.gap};` : ''}
+    ${(props) => props.direction != null ? `flex-direction: ${props.direction}` : ''};
+    ${(props) => props.gap != null ? `gap: ${typeof props.gap === 'number' ? `${props.gap}px` : props.gap};` : ''}
     ${(props) =>  props.centerContent && "justify-content: center; align-items: center;"}
     ${(props) => props.bp != null ? getBaseComponentProps(props.bp) : ''}
 `

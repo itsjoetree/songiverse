@@ -5,61 +5,19 @@ import Text from '../components/Text'
 import AuthenticationForm from '../components/AuthenticationForm'
 import RatingBar from '../components/RatingBar'
 import Link from 'next/link'
+import FeedItem from '../components/FeedItem'
+import { auth } from '../firebase/clientApp'
 import { Input } from '../components/styled/Inputs.styled'
 import { FlexContainer } from '../components/styled/Containers.styled'
 import { MusicNoteBeamed, StarHalf } from 'react-bootstrap-icons'
 import { useMediaQuery } from 'react-responsive'
-import { Album, Song } from '../types'
-
-type HomeProps = {
-  albums: Album[]
-}
+import { Album } from '../types'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const APP_COLOR = "#6495ED"
 
-type User = {
-  username: string,
-  profilePic: string,
-}
-
-type FeedItemCriteria = {
-  user: User,
-  album?: Album,
-  song?: Song,
-}
-
-type FeedItemProps = {
-  criteria: FeedItemCriteria
-}
-
-const FeedItem = ({ criteria } : FeedItemProps) => {
-
-  return (
-    <FlexContainer direction="column" bp={{
-      w: "450px",
-      mw: "100%",
-      mt: "1rem",
-      mb: "1rem",
-      p: 10,
-      boxShadow: "5px 7px 15px #B8B8B8",
-      borderRadius: 10
-    }}>
-      
-      <FlexContainer style={{gap: 1, marginBottom: 10}}>
-        <Image style={{borderRadius: "50%", marginRight: 5}} width={50} height={50} alt="profile photo" src={criteria.user.profilePic} />
-
-        <Text component="span" bp={{fs: 12, alignSelf: "center"}} fontWeight="bold">{criteria.user.username}</Text>
-        <Text component="span" bp={{fs: 12, fst: "italic", alignSelf: "center"}}>rated...</Text>
-      </FlexContainer>
-
-      <FlexContainer style={{borderTop: ".5px solid lightGray", padding: 5, alignItems: "center"}} direction="column">
-        <Image style={{marginTop: 5}} width={150} height={150} alt="album" src={criteria.album?.imgSrc ?? ""} />
-        <Text bp={{m: 0, color: APP_COLOR}} component="h3">{criteria.album?.name}</Text>
-
-        <RatingBar rating={criteria.album?.rating} />
-      </FlexContainer>
-    </FlexContainer>
-  )
+type HomeProps = {
+  albums: Album[]
 }
 
 const SAMPLE_FEED = <FeedItem criteria={{ user: { username: "itsjoetree", profilePic: "/images/me.jpg" }, album: {
@@ -164,7 +122,7 @@ const DefaultHome = ({albums} : HomeProps) => {
 
               <Text bp={{color: APP_COLOR, m: 0}} component='h3'>{album.name}</Text>
               <RatingBar rating={album.rating} />
-              <Text bp={{fs: 10}}>{album.artist}</Text>
+              <Text bp={{fs: 12}}>{album.artist}</Text>
             </FlexContainer>)
         }
       </FlexContainer>
@@ -175,19 +133,19 @@ const DefaultHome = ({albums} : HomeProps) => {
 }
 
 const Home = ({albums} : HomeProps) => {
-  const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(true) 
+  const [user, loading, error] = useAuthState(auth)
 
   return (<>
     <Head>
       <title>Home - Songiverse</title>
     </Head>
 
-    {isAuthenticated ? <AuthenticatedHome /> : <DefaultHome albums={albums} />}
+    {user != null ? <AuthenticatedHome /> : <DefaultHome albums={albums} />}
   </>)
 }
 
 export async function getStaticProps() {
-  
+
   const albums: Album[] = [
     {
       id: "nectar",
