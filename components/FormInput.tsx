@@ -1,4 +1,4 @@
-import Text from "./Text"
+import Typography from "./Typography"
 import { FlexContainer } from "./styled/Containers.styled"
 import { Input } from "./styled/Inputs.styled"
 import React from "react"
@@ -8,6 +8,7 @@ type FormInputProps = {
     width?: string,
     labelSize?: string,
     placeholder?: string,
+    error?: string
 }
 
 const FormInput = React.forwardRef((props: FormInputProps, ref: any) => (
@@ -18,7 +19,7 @@ const FormInput = React.forwardRef((props: FormInputProps, ref: any) => (
             maxWidth: "100%"
         }}>
 
-        <Text bp={{
+        <Typography bp={{
             w: "fit-content",
             pos: "relative",
             pr: 1,
@@ -28,9 +29,13 @@ const FormInput = React.forwardRef((props: FormInputProps, ref: any) => (
             bgColor: "white",
             fs: props.labelSize ? props.labelSize : "12px"}}>
             {props.labelText}
-        </Text>
+        </Typography>
 
         <Input ref={ref} placeholder={props.placeholder} />
+
+        {props.error != null && <Typography bp={{fs: 12, color: "red", alignSelf: "flex-start"}}>
+            {props.error}
+        </Typography>}
     </FlexContainer>
 ));
 

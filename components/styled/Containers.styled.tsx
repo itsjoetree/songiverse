@@ -17,12 +17,3 @@ export const FlexContainer = styled.div<FlexContainerProps>`
     ${(props) =>  props.centerContent && "justify-content: center; align-items: center;"}
     ${(props) => props.bp != null ? getBaseComponentProps(props.bp) : ''}
 `
-
-interface BlockProps {
-    bp?: BaseComponentProps,
-    children?: any,
-}
-
-export const Block = styled.div<BlockProps>`
-    ${(props) => props.bp != null ? getBaseComponentProps(props.bp) : ''}
-`

@@ -9,7 +9,6 @@ export const Button = styled.a<ButtonProps>`
     cursor: pointer;
     padding: 5px;
     width: 10rem;
-    background: tansparent;
     color: white;
     display: inline-block;
     text-align: center;

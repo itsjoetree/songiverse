@@ -1,0 +1,9 @@
+query getAlbums ($token: String!) {
+    albums (token: $token) {
+        id,
+        name,
+        artist,
+        rating,
+        imgSrc,
+    }
+}

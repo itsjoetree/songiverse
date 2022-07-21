@@ -1,26 +1,36 @@
 import React, { ReactNode } from "react"
-import { Icon, StarFill, StarHalf } from "react-bootstrap-icons"
+import { Star, StarFill, StarHalf } from "react-bootstrap-icons"
 import { useMediaQuery } from "react-responsive"
-import { Block } from "./styled/Containers.styled"
+import { Block } from "./Typography"
+import {BaseComponentProps} from "../helpers/baseProps";
 
-const APP_COLOR = "#6495ED"
+type RatingBarProps = {
+  bp?: BaseComponentProps,
+  rating: number,
+  color?: string
+}
 
-const RatingBar = ({rating} : any) => {
+const RatingBar = (props : RatingBarProps) => {
   const isTinyDevice = useMediaQuery({ query: '(max-width: 400px)' })
+  const starSize = isTinyDevice ? 10 : 20
 
   const getStars = () : ReactNode[] => {
-    const parsedRating = rating.toString()
+    const parsedRating = props.rating.toString()
     const nums = parsedRating.split('.')
 
-    const stars = new Array(parseInt(nums[0])).fill(<StarFill size={isTinyDevice ? 10 : 20} color={APP_COLOR} />);
+    const stars = new Array(parseInt(nums[0])).fill(<StarFill size={starSize} color={props.color} />);
 
-    if (nums.length > 1 && nums[1] >= 5) stars.push(<StarHalf size={isTinyDevice ? 10 : 20} color={APP_COLOR} />)
+    if (nums.length > 1 && parseInt(nums[1]) >= 5)
+      stars.push(<StarHalf size={starSize} color={props.color} />)
+
+    if (stars.length < 5) stars.push(Array(5 - stars.length)
+        .fill(<Star size={starSize} color={props.color}  />))
 
     return stars
   }
 
   return (
-      <Block>
+      <Block bp={props.bp}>
         {
           getStars().map((star, i) => <React.Fragment key={i}>{star}</React.Fragment>)
         }

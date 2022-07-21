@@ -1,11 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import Text from './Text'
+import Typography from './Typography'
 import RatingBar from './RatingBar'
 import { Album, Song, User } from '../types'
 import { FlexContainer } from './styled/Containers.styled'
-
-const APP_COLOR = "#6495ED"
+import { APP_COLOR } from '../pages/_app'
 
 type FeedItemProps = {
     criteria: FeedItemCriteria
@@ -39,7 +38,7 @@ const FeedItem = ({ criteria } : FeedItemProps) => {
   
       return (<>
         <Image style={{marginTop: 5}} width={150} height={150} alt="album" src={imgSrc} />
-        <Text bp={{m: 0, color: APP_COLOR}} component="h3">{name}</Text>
+        <Typography bp={{m: 0, color: APP_COLOR}} component="h3">{name}</Typography>
         <RatingBar rating={rating} />
       </>)
     }
@@ -57,8 +56,8 @@ const FeedItem = ({ criteria } : FeedItemProps) => {
         <FlexContainer style={{gap: 1, marginBottom: 10}}>
           <Image style={{borderRadius: "50%", marginRight: 5}} width={50} height={50} alt="profile photo" src={criteria.user.profilePic} />
   
-          <Text component="span" bp={{fs: 12, alignSelf: "center"}} fontWeight="bold">{criteria.user.username}</Text>
-          <Text component="span" bp={{fs: 12, fst: "italic", alignSelf: "center"}}>rated...</Text>
+          <Typography component="span" bp={{fs: 12, alignSelf: "center", fw: "bold"}}>{criteria.user.username}</Typography>
+          <Typography component="span" bp={{fs: 12, fst: "italic", alignSelf: "center"}}>rated...</Typography>
         </FlexContainer>
   
         <FlexContainer style={{borderTop: ".5px solid lightGray", padding: 5, alignItems: "center"}} direction="column">

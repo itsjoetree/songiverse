@@ -1,0 +1,3 @@
+mutation createUserByProvider($username: String!, $identifier: String!, $displayName: String!, $token: String!) {
+    userByProvider(username: $username, identifier: $identifier, displayName: $displayName, token: $token)
+}

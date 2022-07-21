@@ -1,4 +1,6 @@
 export interface BaseComponentProps {
+    /** Sets the font-weight property. */
+    fw?: string,
     /** Sets the border property. */
     border?: string,
     /** Sets the width property. */
@@ -60,6 +62,7 @@ export interface BaseComponentProps {
 export const getBaseComponentProps = (props: BaseComponentProps) => {
 
     return `
+    ${props.fw != null ? `border: ${props.fw};` : ''}
     ${props.border != null ? `border: ${props.border};` : ''}
     ${props.w != null ? `width: ${typeof props.w === 'number' ? `${props.w}px` : props.w};` : ''}
     ${props.h != null ? `height: ${typeof props.h === 'number' ? `${props.h}px` : props.h};` : ''}
