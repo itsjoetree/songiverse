@@ -1,6 +1,5 @@
 import React from 'react'
 import Typography from '../components/Typography'
-import AuthenticationForm from '../components/AuthenticationForm'
 import Image from 'next/image'
 import { Input } from '../components/styled/Inputs.styled'
 import { FlexContainer } from '../components/styled/Containers.styled'
@@ -101,9 +100,7 @@ const DefaultHome = () => {
               </FlexContainer>)
           }
         </FlexContainer>
-      </FlexContainer>
-  
-      <AuthenticationForm />
+      </FlexContainer>  
     </>)
   }
 

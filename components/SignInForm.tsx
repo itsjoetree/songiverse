@@ -1,19 +1,14 @@
-import React from "react"
-import Typography from "./Typography"
-import FormInput from "./FormInput"
-import { getAuth, getRedirectResult, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
-import { FormProps } from "../types"
-import { FlexContainer } from "./styled/Containers.styled"
-import { Button } from "./styled/Buttons.styled"
-import { useMediaQuery } from "react-responsive"
-import { Google } from "react-bootstrap-icons"
-import { APP_COLOR } from "../pages/_app"
-import { useMutation } from "react-query";
-import { createUserByProvider } from "../src/api";
+import React from "react";
+import Typography from "./Typography";
+import FormInput from "./FormInput";
+import { FormProps } from "../types";
+import { FlexContainer } from "./styled/Containers.styled";
+import { Button } from "./styled/Buttons.styled";
+import { APP_COLOR } from "../pages/_app";
 
 const SignInForm = ({switchForm} : FormProps) => {
-    const usernameRef = React.useRef<HTMLInputElement>(null)
-    const passwordRef = React.useRef<HTMLInputElement>(null)
+    const usernameRef = React.useRef<HTMLInputElement>(null);
+    const passwordRef = React.useRef<HTMLInputElement>(null);
   
     return (<>
       <FlexContainer bp={{mt: "1rem"}} direction="column">

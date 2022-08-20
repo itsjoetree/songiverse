@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import React from 'react'
-import { auth } from '../firebase/clientApp'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { dehydrate, useQuery } from 'react-query'
 import { queryClient, getUsers, userByUsername } from '../src/api'
@@ -8,7 +7,6 @@ import DefaultHome from '../components/DefaultHome'
 import AuthenticatedHome from '../components/AuthenticatedHome'
 
 const Home = () => {
-  const [user, loading, error] = useAuthState(auth)
   const { data } = useQuery(["users"], () => getUsers())
 
   return (<>

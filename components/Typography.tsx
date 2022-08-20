@@ -53,7 +53,6 @@ export const Block = styled.div<TypographyStyles>`
     ${(props) => props.bp != null ? getBaseComponentProps(props.bp) : ''}
 `
 
-
 const Typography = (props: TypographyProps) => {
 
     const getComponent = () => {    

@@ -3,7 +3,6 @@ import Typography from '../components/Typography'
 import Link from 'next/link'
 import Router from 'next/router'
 import FeedItem from './FeedItem'
-import { auth } from '../firebase/clientApp'
 import { Input } from '../components/styled/Inputs.styled'
 import { FlexContainer } from '../components/styled/Containers.styled'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -20,10 +19,9 @@ const SAMPLE_FEED = <FeedItem criteria={{ user: { username: "itsjoetree", profil
 }}} />
 
 const AuthenticatedHome = () => {
-    const [user, loading, error] = useAuthState(auth)
     const { data, isLoading } = useQuery(["albums"], async () => {
 
-        const tokenId = await user?.getIdToken()
+        /*const tokenId = await user?.getIdToken()
         if (tokenId == null) return tokenId
 
         getAlbums({ token: tokenId })
@@ -33,7 +31,7 @@ const AuthenticatedHome = () => {
             .catch(err => {
                 if (err.response.errors[0].message === "google-signin-incomplete")
                     Router.push("sign-in-with-google")
-            })
+            })*/
     })
 
     return (<>

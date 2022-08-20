@@ -1,31 +1,9 @@
 import "reflect-metadata"
 import { ApolloServer } from "apollo-server-micro"
-import { UsersResolver } from "../../src/schema/users.resolver"
+import { UsersResolver } from "../../src/resolvers/users.resolver"
 import { buildSchema } from "type-graphql"
-import * as admin from 'firebase-admin'
+import { AlbumResolver } from "../../src/resolvers/album.resolver"
 import micro_cors from "micro-cors"
-import mongoose from 'mongoose'
-import { AlbumResolver } from "../../src/schema/album.resolver"
-
-if (admin.apps.length === 0) {
-    admin.initializeApp({
-        credential: admin.credential.cert(({
-            projectId: "songiverse-development",
-            privateKey: process.env.FIREBASE_API_KEY?.replace(/\\n/g, '\n'),
-            clientEmail: process.env.FIREBASE_CLIENT_EMAIL
-        }))
-    })    
-}
-
-const uri = process.env.MONGODB_URI
-
-const main = async () => {
-  await mongoose.connect(uri ?? "")
-};
-
-main()
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(error => console.error(error));
 
 const schema = await buildSchema({
     resolvers: [UsersResolver, AlbumResolver]
